@@ -1,0 +1,1 @@
+Application for generating dynasty trees. Server-client architecture.
