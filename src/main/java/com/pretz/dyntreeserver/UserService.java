@@ -2,9 +2,9 @@ package com.pretz.dyntreeserver;
 
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserService {
 
     private UserDao userDao;
@@ -14,8 +14,8 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public boolean checkIfUserExists(User user) {
-        if (userDao.exists(user.getId())) {
+    public boolean validateUser(User user) {
+        if (userDao.findByNameAndPassword(user.getName(), user.getPassword()).isPresent()) {
             return true;
         } else {
             return false;
@@ -23,7 +23,9 @@ public class UserService {
     }
 
     public boolean createUser(User user) {
-        userDao.save(user);
-        return checkIfUserExists(user);
+        if (!userDao.findByNameAndPassword(user.getName(), user.getPassword()).isPresent()) {
+            userDao.save(user);
+        }
+        return validateUser(user);
     }
 }

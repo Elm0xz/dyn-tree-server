@@ -1,9 +1,12 @@
 package com.pretz.dyntreeserver;
 
 import com.pretz.dyntreeserver.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDao extends CrudRepository<User, Long> {
+import java.util.Optional;
 
-    public User findByEmail(String email);
+public interface UserDao extends JpaRepository<User, Long> {
+
+    Optional<User> findByNameAndPassword(String name, String password);
+    Optional<User> findByEmail(String email);
 }
