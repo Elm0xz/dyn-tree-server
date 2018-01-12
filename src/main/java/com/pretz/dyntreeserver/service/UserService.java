@@ -19,7 +19,7 @@ public class UserService {
         if (userRepo.findByName(user.getName()).isPresent()) {
             return true;
         } else {
-            return false;
+            throw new UserNotFoundException(user);
         }
     }
 
@@ -27,6 +27,10 @@ public class UserService {
         if (!userRepo.findByName(user.getName()).isPresent()) {
             userRepo.save(user);
         }
-        return validateUser(user);
+        if (userRepo.findByName(user.getName()).isPresent()) {
+            return true;
+        } else {
+            throw new UserCreationFailException(user);
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.pretz.dyntreeserver.service.UserService;
 import com.pretz.dyntreeserver.UserSession;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,25 +24,13 @@ public class AuthController {
 
     @RequestMapping(method = POST, path = "/auth")
     public ResponseEntity<String> login(@RequestBody User user) {
-        boolean userExists = userService.validateUser(user);
-        if (userExists) {
-            //is it RESTful?
-            UserSession userSession = new UserSession(user);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+        userService.validateUser(user);
+        return new ResponseEntity<>("User " + user.getName() + " Successfully logged in!", new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(method = POST, path = "/create_user")
     public ResponseEntity<String> createUser(@RequestBody User user) {
-        boolean userCreated = userService.createUser(user);
-        if (userCreated) {
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        userService.createUser(user);
+        return new ResponseEntity<>("User " + user.getName() + " Successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }
 }
