@@ -1,5 +1,7 @@
-package com.pretz.dyntreeserver;
+package com.pretz.dyntreeserver.controller;
 
+import com.pretz.dyntreeserver.service.UserService;
+import com.pretz.dyntreeserver.UserSession;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
