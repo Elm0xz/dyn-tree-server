@@ -1,4 +1,4 @@
-package com.pretz.dyntreeserver.service;
+package com.pretz.dyntreeserver.service.exceptions;
 
 import com.pretz.dyntreeserver.domain.User;
 

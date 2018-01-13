@@ -1,7 +1,5 @@
-package com.pretz.dyntreeserver.controller;
+package com.pretz.dyntreeserver.service.exceptions;
 
-import com.pretz.dyntreeserver.service.UserCreationFailException;
-import com.pretz.dyntreeserver.service.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +18,10 @@ public class AuthExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = UserCreationFailException.class)
     protected ResponseEntity<Object> handleUserCreationFailException(UserCreationFailException uEx) {
         return new ResponseEntity<Object>("User creation failure.", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = IncorrectPasswordException.class)
+    protected ResponseEntity<Object> handleIncorrectPasswordException(IncorrectPasswordException iEx) {
+        return new ResponseEntity<Object>("Incorrect password.", new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 }

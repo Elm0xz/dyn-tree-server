@@ -1,7 +1,6 @@
 package com.pretz.dyntreeserver.controller;
 
 import com.pretz.dyntreeserver.service.UserService;
-import com.pretz.dyntreeserver.UserSession;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,13 +23,13 @@ public class AuthController {
 
     @RequestMapping(method = POST, path = "/auth")
     public ResponseEntity<String> login(@RequestBody User user) {
-        userService.validateUser(user);
-        return new ResponseEntity<>("User " + user.getName() + " Successfully logged in!", new HttpHeaders(), HttpStatus.OK);
+        String userToken = userService.validateUser(user);
+        return new ResponseEntity<>("User " + user.getName() + " successfully logged in! \nJWT Token: " + userToken, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(method = POST, path = "/create_user")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.createUser(user);
-        return new ResponseEntity<>("User " + user.getName() + " Successfully created!", new HttpHeaders(), HttpStatus.CREATED);
+        return new ResponseEntity<>("User " + user.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }
 }
