@@ -3,5 +3,8 @@
 .idea/tasks.xml
 .idea/**/uiDesigner.xml
 .idea/**/libraries
+.idea/inspectionProfiles/
+
 target/
+application.properties
 
