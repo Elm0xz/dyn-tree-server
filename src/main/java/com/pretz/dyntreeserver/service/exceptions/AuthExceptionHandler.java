@@ -10,18 +10,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class AuthExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = UserNotFoundException.class)
-    protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException uEx) {
-        return new ResponseEntity<Object>("User not found.", new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+    @ExceptionHandler(value = AuthException.class)
+    protected ResponseEntity<String> handleAuthException(AuthException aEx) {
+        return new ResponseEntity<>(aEx.authExceptionMsg + aEx.userName, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(value = UserCreationFailException.class)
-    protected ResponseEntity<Object> handleUserCreationFailException(UserCreationFailException uEx) {
-        return new ResponseEntity<Object>("User creation failure.", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(value = UserAlreadyCreatedException.class)
+    protected ResponseEntity<Object> handleUserCreationFailException(UserAlreadyCreatedException uEx) {
+        return new ResponseEntity<Object>(uEx.userAlreadyCreatedExceptionMsg + uEx.userName, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = IncorrectPasswordException.class)
-    protected ResponseEntity<Object> handleIncorrectPasswordException(IncorrectPasswordException iEx) {
-        return new ResponseEntity<Object>("Incorrect password.", new HttpHeaders(), HttpStatus.UNAUTHORIZED);
-    }
 }
