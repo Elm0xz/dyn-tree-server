@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -31,5 +32,10 @@ public class AuthController {
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.createUser(user);
         return new ResponseEntity<>("User " + user.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = GET, path = "/get_all_users")
+    public ResponseEntity<String> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUsers().toString(), new HttpHeaders(), HttpStatus.OK);
     }
 }

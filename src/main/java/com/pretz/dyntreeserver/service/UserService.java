@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @PropertySource("application.properties")
@@ -38,7 +39,7 @@ public class UserService {
 
     public String validateUser(User user) {
         if (!userRepo.findByName(user.getName()).isPresent()
-                || !passwordEncoder.matches(user.getPassword(), userRepo.getOne(user.getId()).getPassword())) {
+                || !passwordEncoder.matches(user.getPassword(), userRepo.findByName(user.getName()).get().getPassword())) {
             throw new AuthException(user.getName());
         }
         return createToken(user);
@@ -62,5 +63,9 @@ public class UserService {
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALID_TIME))
                 .signWith(SignatureAlgorithm.HS512, seed.getBytes())
                 .compact();
+    }
+
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
     }
 }
