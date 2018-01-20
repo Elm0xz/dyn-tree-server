@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @PropertySource("application.properties")
@@ -38,8 +39,9 @@ public class UserService {
     }
 
     public String validateUser(User user) {
-        if (!userRepo.findByName(user.getName()).isPresent()
-                || !passwordEncoder.matches(user.getPassword(), userRepo.findByName(user.getName()).get().getPassword())) {
+        Optional<User> foundUser = userRepo.findByName(user.getName());
+        if (!foundUser.isPresent()
+                || !passwordEncoder.matches(user.getPassword(), foundUser.get().getPassword())) {
             throw new AuthException(user.getName());
         }
         return createToken(user);
