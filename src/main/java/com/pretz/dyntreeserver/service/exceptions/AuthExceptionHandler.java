@@ -12,12 +12,12 @@ public class AuthExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = AuthException.class)
     protected ResponseEntity<String> handleAuthException(AuthException aEx) {
-        return new ResponseEntity<>(aEx.authExceptionMsg + aEx.userName, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(aEx.exMessage, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(value = UserAlreadyCreatedException.class)
     protected ResponseEntity<Object> handleUserCreationFailException(UserAlreadyCreatedException uEx) {
-        return new ResponseEntity<Object>(uEx.userAlreadyCreatedExceptionMsg + uEx.userName, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<Object>(uEx.exMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
