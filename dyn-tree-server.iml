@@ -48,7 +48,6 @@
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.10" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.10" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.13.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.13.RELEASE" level="project" />
@@ -71,9 +70,7 @@
     <orderEntry type="library" name="Maven: javax.transaction:javax.transaction-api:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:1.11.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.13.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.3.13.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.13.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.3.13.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:1.5.9.RELEASE" level="project" />
@@ -84,5 +81,14 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.katharsis:katharsis-core:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: net.jodah:typetools:0.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.13" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.7" level="project" />
+    <orderEntry type="library" name="Maven: io.katharsis:katharsis-spring:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: io.katharsis:katharsis-servlet:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.3.4.RELEASE" level="project" />
   </component>
 </module>

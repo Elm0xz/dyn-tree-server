@@ -1,5 +1,7 @@
 package com.pretz.dyntreeserver.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pretz.dyntreeserver.service.UserService;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class AuthController {
     private UserService userService;
+    private JsonApiParser jsonApiParser;
 
     @Autowired
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, JsonApiParser jsonApiParser) {
         this.userService = userService;
+        this.jsonApiParser = jsonApiParser;
     }
 
     @RequestMapping(method = POST, path = "/auth")
@@ -37,7 +39,14 @@ public class AuthController {
     }
 
     @RequestMapping(method = GET, path = "/get_all_users")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return new ResponseEntity<>(userService.getAllUsers(), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<String> getAllUsers() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String allUsers = "";
+        try {
+            allUsers = objectMapper.writeValueAsString(userService.getAllUsers());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(jsonApiParser.parse(allUsers), new HttpHeaders(), HttpStatus.OK);
     }
 }

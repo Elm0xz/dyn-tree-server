@@ -1,5 +1,6 @@
 package com.pretz.dyntreeserver;
 
+import com.pretz.dyntreeserver.controller.JsonApiParser;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -21,5 +22,10 @@ public class App {
     @Bean
     PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    JsonApiParser getJsonApiParser() {
+        return new JsonApiParser();
     }
 }
