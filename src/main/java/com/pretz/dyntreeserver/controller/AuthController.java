@@ -20,12 +20,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class AuthController {
     private UserService userService;
-    private JsonApiParser jsonApiParser;
 
     @Autowired
-    public AuthController(UserService userService, JsonApiParser jsonApiParser) {
+    public AuthController(UserService userService) {
         this.userService = userService;
-        this.jsonApiParser = jsonApiParser;
     }
 
     @RequestMapping(method = POST, path = "/auth")
@@ -42,13 +40,6 @@ public class AuthController {
 
     @RequestMapping(method = GET, path = "/get_all_users")
     public ResponseEntity<String> getAllUsers() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String allUsers = "";
-        try {
-            allUsers = objectMapper.writeValueAsString(userService.getAllUsers());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return new ResponseEntity<>(jsonApiParser.parse(allUsers), new JsonApiHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getAllUsers(), new JsonApiHeaders(), HttpStatus.OK);
     }
 }

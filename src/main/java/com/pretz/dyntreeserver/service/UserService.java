@@ -1,5 +1,7 @@
 package com.pretz.dyntreeserver.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pretz.dyntreeserver.domain.User;
 import com.pretz.dyntreeserver.repository.UserRepo;
 import com.pretz.dyntreeserver.service.exceptions.AuthException;
@@ -26,11 +28,13 @@ public class UserService {
 
     private UserRepo userRepo;
     private PasswordEncoder passwordEncoder;
+    private JsonApiParser jsonApiParser;
 
     @Autowired
-    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder, JsonApiParser jsonApiParser) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.jsonApiParser = jsonApiParser;
     }
 
     @Value("${dyntreeserver.seed}")
@@ -67,7 +71,14 @@ public class UserService {
                 .compact();
     }
 
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
+    public String getAllUsers() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String allUsers = "";
+        try {
+            allUsers = objectMapper.writeValueAsString(userRepo.findAll());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonApiParser.parse(allUsers);
     }
 }
