@@ -1,9 +1,6 @@
 package com.pretz.dyntreeserver.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pretz.dyntreeserver.service.JsonApiHeaders;
-import com.pretz.dyntreeserver.service.JsonApiParser;
 import com.pretz.dyntreeserver.service.UserService;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
