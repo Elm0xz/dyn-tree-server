@@ -1,4 +1,4 @@
-package com.pretz.dyntreeserver.controller;
+package com.pretz.dyntreeserver.service;
 
 public class JsonApiParser {
 

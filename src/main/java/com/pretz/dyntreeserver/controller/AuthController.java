@@ -2,6 +2,8 @@ package com.pretz.dyntreeserver.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pretz.dyntreeserver.service.JsonApiHeaders;
+import com.pretz.dyntreeserver.service.JsonApiParser;
 import com.pretz.dyntreeserver.service.UserService;
 import com.pretz.dyntreeserver.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,6 @@ public class AuthController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>(jsonApiParser.parse(allUsers), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(jsonApiParser.parse(allUsers), new JsonApiHeaders(), HttpStatus.OK);
     }
 }
