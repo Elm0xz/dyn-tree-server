@@ -1,6 +1,7 @@
 package com.pretz.dyntreeserver.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -16,7 +17,7 @@ public class User {
     private String name;
 
     @Column(name = "password")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "email")
@@ -53,6 +54,7 @@ public class User {
         this.name = name;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
