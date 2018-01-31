@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pretz.dyntreeserver.domain.User;
 import com.pretz.dyntreeserver.repository.UserRepo;
+import com.pretz.dyntreeserver.service.dto.UserDTO;
 import com.pretz.dyntreeserver.service.exceptions.AuthException;
 import com.pretz.dyntreeserver.service.exceptions.UserAlreadyCreatedException;
 import io.jsonwebtoken.Jwts;
@@ -41,30 +42,31 @@ public class UserService {
         UserService.seed = seed;
     }
 
-    public String validateUser(User user) {
-        Optional<User> foundUser = userRepo.findByName(user.getName());
+    public String validateUser(UserDTO userDTO) {
+        Optional<User> foundUser = userRepo.findByName(userDTO.getName());
         if (!foundUser.isPresent()
-                || !passwordEncoder.matches(user.getPassword(), foundUser.get().getPassword())) {
-            throw new AuthException(user.getName());
+                || !passwordEncoder.matches(userDTO.getPassword(), foundUser.get().getPassword())) {
+            throw new AuthException(userDTO.getName());
         }
-        return createToken(user);
+        return createToken(userDTO);
     }
 
-    public void createUser(User user) {
-        if (userRepo.findByName(user.getName()).isPresent()) {
-            throw new UserAlreadyCreatedException(user.getName());
+    public void createUser(UserDTO userDTO) {
+        if (userRepo.findByName(userDTO.getName()).isPresent()) {
+            throw new UserAlreadyCreatedException(userDTO.getName());
         }
-        user.setPassword(encryptPassword(user));
-        userRepo.save(user);
+        User newUser = new User(userDTO);
+        newUser.setPassword(encryptPassword(userDTO));
+        userRepo.save(newUser);
     }
 
-    private String encryptPassword(User user) {
-        return passwordEncoder.encode(user.getPassword());
+    private String encryptPassword(UserDTO userDTO) {
+        return passwordEncoder.encode(userDTO.getPassword());
     }
 
-    private String createToken(User user) {
+    private String createToken(UserDTO userDTO) {
         return Jwts.builder()
-                .setSubject(user.getName())
+                .setSubject(userDTO.getName())
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALID_TIME))
                 .signWith(SignatureAlgorithm.HS512, seed.getBytes())
                 .compact();
