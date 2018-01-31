@@ -1,7 +1,5 @@
 package com.pretz.dyntreeserver.domain;
 
-import com.pretz.dyntreeserver.service.dto.UserDTO;
-
 import javax.persistence.*;
 
 @Entity
@@ -24,15 +22,9 @@ public class User {
     public User() {
     }
 
-    public User(UserDTO userDTO) {
-        this.name = userDTO.getName();
-        this.email = userDTO.getEmail();
-    }
-
-    public User(String name, String password) {
+    public User(String name, String email) {
         this.name = name;
-        this.password = password;
-        this.email = "";
+        this.email = email;
     }
 
     public User(String name, String password, String email) {

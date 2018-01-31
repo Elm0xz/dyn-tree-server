@@ -55,7 +55,7 @@ public class UserService {
         if (userRepo.findByName(userDTO.getName()).isPresent()) {
             throw new UserAlreadyCreatedException(userDTO.getName());
         }
-        User newUser = new User(userDTO);
+        User newUser = new User(userDTO.getName(), userDTO.getEmail());
         newUser.setPassword(encryptPassword(userDTO));
         userRepo.save(newUser);
     }
