@@ -2,7 +2,7 @@ package com.pretz.dyntreeserver.controller;
 
 import com.pretz.dyntreeserver.service.JsonApiHeaders;
 import com.pretz.dyntreeserver.service.UserService;
-import com.pretz.dyntreeserver.domain.User;
+import com.pretz.dyntreeserver.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,15 +24,15 @@ public class AuthController {
     }
 
     @RequestMapping(method = POST, path = "/auth")
-    public ResponseEntity<String> login(@RequestBody User user) {
-        String userToken = userService.validateUser(user);
-        return new ResponseEntity<>("User " + user.getName() + " successfully logged in! \nJWT Token: " + userToken, new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+        String userToken = userService.validateUser(userDTO);
+        return new ResponseEntity<>("User " + userDTO.getName() + " successfully logged in! \nJWT Token: " + userToken, new HttpHeaders(), HttpStatus.OK);
     }
 
     @RequestMapping(method = POST, path = "/create_user")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        userService.createUser(user);
-        return new ResponseEntity<>("User " + user.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
+    public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
+        userService.createUser(userDTO);
+        return new ResponseEntity<>("User " + userDTO.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = GET, path = "/get_all_users")
