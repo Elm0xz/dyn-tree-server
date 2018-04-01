@@ -2,7 +2,9 @@ package com.pretz.dyntreeserver.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize
 public class UserDTO {
 
     private String name;

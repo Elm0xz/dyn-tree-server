@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pretz.dyntreeserver.domain.User;
 import com.pretz.dyntreeserver.repository.UserRepo;
 import com.pretz.dyntreeserver.service.dto.UserDTO;
+import com.pretz.dyntreeserver.service.dto.UserMapper;
 import com.pretz.dyntreeserver.service.exceptions.AuthException;
 import com.pretz.dyntreeserver.service.exceptions.UserAlreadyCreatedException;
 import io.jsonwebtoken.Jwts;
@@ -28,13 +29,11 @@ public class UserService {
 
     private UserRepo userRepo;
     private PasswordEncoder passwordEncoder;
-    private JsonApiParser jsonApiParser;
 
     @Autowired
-    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder, JsonApiParser jsonApiParser) {
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
-        this.jsonApiParser = jsonApiParser;
     }
 
     @Value("${dyntreeserver.seed}")
@@ -70,16 +69,5 @@ public class UserService {
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALID_TIME))
                 .signWith(SignatureAlgorithm.HS512, seed.getBytes())
                 .compact();
-    }
-
-    public String getAllUsers() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String allUsers = "";
-        try {
-            allUsers = objectMapper.writeValueAsString(userRepo.findAll());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return jsonApiParser.parse(allUsers);
     }
 }

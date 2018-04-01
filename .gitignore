@@ -4,6 +4,7 @@
 .idea/**/uiDesigner.xml
 .idea/**/libraries
 .idea/inspectionProfiles/
+.idea/sonarlint
 
 target/
 application.properties

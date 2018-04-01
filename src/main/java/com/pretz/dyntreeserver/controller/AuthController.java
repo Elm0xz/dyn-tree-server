@@ -34,9 +34,4 @@ public class AuthController {
         userService.createUser(userDTO);
         return new ResponseEntity<>("User " + userDTO.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }
-
-    @RequestMapping(method = GET, path = "/get_all_users")
-    public ResponseEntity<String> getAllUsers() {
-        return new ResponseEntity<>(userService.getAllUsers(), new JsonApiHeaders(), HttpStatus.OK);
-    }
 }
