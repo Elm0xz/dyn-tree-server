@@ -1,6 +1,6 @@
 package com.pretz.dyntreeserver.controller;
 
-import com.pretz.dyntreeserver.service.UserService;
+import com.pretz.dyntreeserver.service.AuthUserService;
 import com.pretz.dyntreeserver.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,32 +17,32 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @RestController
 public class AuthController {
-    private UserService userService;
+    private AuthUserService authUserService;
 
     @Autowired
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    public AuthController(AuthUserService authUserService) {
+        this.authUserService = authUserService;
     }
 
     /**
-     * Method used for authentication of user.
+     * Endpoint used for authentication of user.
      * @param userDTO - UserDTO containing info about user about to login.
-     * @return - ResponseEntity containing user token.
+     * @return - ResponseEntity containing user token if successful.
      */
     @RequestMapping(method = POST, path = "/auth")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
-        String userToken = userService.validateUser(userDTO);
+        String userToken = authUserService.validateUser(userDTO);
         return new ResponseEntity<>("User " + userDTO.getName() + " successfully logged in! \nJWT Token: " + userToken, new HttpHeaders(), HttpStatus.OK);
     }
 
     /**
-     * Method used for creation of user in database if not present.
+     * Endpoint used for creation of user in database if not present.
      * @param userDTO - UserDTO containing info about user to be created.
      * @return - ResponseEntity containing info whether user was successfully created.
      */
     @RequestMapping(method = POST, path = "/create_user")
     public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
-        userService.createUser(userDTO);
+        authUserService.createUser(userDTO);
         return new ResponseEntity<>("User " + userDTO.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }
 }
