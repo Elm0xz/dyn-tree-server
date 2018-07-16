@@ -29,6 +29,7 @@ public class AuthController {
      * @param userDTO - UserDTO containing info about user about to login.
      * @return - ResponseEntity containing user token if successful.
      */
+    //TODO Here JSON with token and status could be sent instead, check here: http://www.baeldung.com/java-json-web-tokens-jjwt (chapter 4: Building JWTs with JJWT)
     @RequestMapping(method = POST, path = "/auth")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
         String userToken = authUserService.validateUser(userDTO);
