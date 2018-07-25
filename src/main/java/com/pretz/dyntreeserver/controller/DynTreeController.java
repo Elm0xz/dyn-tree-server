@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 @RestController
 public class DynTreeController {
-    private DynTreeService dynTreeService;
+    private final DynTreeService dynTreeService;
 
     @Autowired
     public DynTreeController(DynTreeService dynTreeService) {
