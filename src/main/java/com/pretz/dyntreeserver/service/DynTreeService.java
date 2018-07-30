@@ -2,11 +2,10 @@ package com.pretz.dyntreeserver.service;
 
 import com.pretz.dyntreeserver.domain.DynTree;
 import com.pretz.dyntreeserver.generator.DynTreeGenerator;
-import com.pretz.dyntreeserver.service.dto.CreateDynTreeDTO;
+import com.pretz.dyntreeserver.service.dto.DynTreeDTO;
 import com.pretz.dyntreeserver.service.dto.DynTreeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class DynTreeService {
@@ -20,13 +19,8 @@ public class DynTreeService {
         this.dynTreeGenerator = dynTreeGenerator;
     }
 
-    public DynTree generateDynTree(CreateDynTreeDTO createDynTreeDTO) {
-            DynTreeInput dynTreeInput = dynTreeMapper.fromDynTreeDTO(createDynTreeDTO);
-            return dynTreeGenerator.generateDynTree(dynTreeInput);
-    }
-
-    //TODO Implement
-    private boolean validateDynTreeData(CreateDynTreeDTO createDynTreeDTO) {
-        return true;
+    public DynTree generateDynTree(DynTreeDTO dynTreeDTO) {
+        DynTreeInput dynTreeInput = dynTreeMapper.fromDynTreeDTO(dynTreeDTO);
+        return dynTreeGenerator.generateDynTree(dynTreeInput);
     }
 }
