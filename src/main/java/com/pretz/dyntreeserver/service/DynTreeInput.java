@@ -15,5 +15,5 @@ public final class DynTreeInput {
     private final Integer maxAge;
     private final Integer maturityAge;
     private final Year startingYear;
-    private final String mainCharacter;
+    private final String mainCharacterName;
 }

@@ -17,6 +17,6 @@ public class DynTreeMapper {
                 dynTreeDTO.getMaxAge(),
                 dynTreeDTO.getMaturityAge(),
                 dynTreeDTO.getStartingYear(),
-                dynTreeDTO.getMainCharacter());
+                dynTreeDTO.getMainCharacterName());
     }
 }
