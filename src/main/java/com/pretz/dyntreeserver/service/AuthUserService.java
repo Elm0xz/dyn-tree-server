@@ -39,6 +39,7 @@ public class AuthUserService {
         this.userMapper = userMapper;
     }
 
+    //TODO Using string as secret is considered an antipattern, check here: http://www.baeldung.com/java-json-web-tokens-jjwt (chapter 4: Building JWTs with JJWT)
     @Value("${dyntreeserver.seed}")
     public void setSeed(String seed) {
         AuthUserService.seed = seed;
