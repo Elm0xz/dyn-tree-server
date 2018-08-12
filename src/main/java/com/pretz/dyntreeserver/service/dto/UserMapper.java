@@ -1,10 +1,12 @@
 package com.pretz.dyntreeserver.service.dto;
 
 import com.pretz.dyntreeserver.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UserMapper {
 
     public User fromUserDTO(UserDTO userDTO) {
