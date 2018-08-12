@@ -10,40 +10,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Year;
 
-@Builder
+@Builder @Getter
 public final class DynTreeDTO {
 
-    @NotBlank
-    @Getter
-    private final String familyName;
-
-    @Min(value = 3)
-    @Getter
-    private final int familyCount;
-
-    @Min(value = 2)
-    @Getter
-    private final int generationsCount;
-
-    @Getter
+    @NotBlank private final String familyName;
+    @Min(value = 3) private final int familyCount;
+    @Min(value = 2) private final int generationsCount;
     private final double childrenPerCharacter;
-
-    @Getter
     private final long nameListId;
-
-    @Getter
     private final int maxAge;
-
-    @Getter
     private final int maturityAge;
-
-    @NotNull
-    @Getter
-    private final Year startingYear;
-
-    @NotBlank
-    @Getter
-    private final String mainCharacterName;
+    @NotNull private final Year startingYear;
+    @NotBlank private final String mainCharacterName;
 
     @JsonCreator
     public DynTreeDTO(@JsonProperty("family_name") String familyName,
