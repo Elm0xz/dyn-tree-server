@@ -58,7 +58,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationBlankFamilyName() {
+    public void shouldNotPassValidationBlankFamilyName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .familyName("    ")
                 .build();
@@ -66,7 +66,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
@@ -75,7 +74,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationEmptyFamilyName() {
+    public void shouldNotPassValidationEmptyFamilyName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .familyName("")
                 .build();
@@ -83,7 +82,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
@@ -92,7 +90,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationNullFamilyName() {
+    public void shouldNotPassValidationNullFamilyName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .familyName(null)
                 .build();
@@ -100,7 +98,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
@@ -109,7 +106,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationFamilyCountTooSmall() {
+    public void shouldNotPassValidationFamilyCountTooSmall() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .familyCount(1)
                 .build();
@@ -117,7 +114,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(FAMILY_COUNT_MIN_VIOLATION_MSC, violation.getMessage());
@@ -126,7 +122,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationGenerationsCountTooSmall() {
+    public void shouldNotPassValidationGenerationsCountTooSmall() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .generationsCount(1)
                 .build();
@@ -134,7 +130,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(GENERATIONS_COUNT_MIN_VIOLATION_MSC, violation.getMessage());
@@ -143,7 +138,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationNullYear() {
+    public void shouldNotPassValidationNullYear() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .startingYear(null)
                 .build();
@@ -151,7 +146,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(NULL_VIOLATION_MSG, violation.getMessage());
@@ -160,7 +154,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationBlankMainCharacterName() {
+    public void shouldNotPassValidationBlankMainCharacterName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .mainCharacterName("    ")
                 .build();
@@ -168,7 +162,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
@@ -177,7 +170,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationEmptyMainCharacterName() {
+    public void shouldNotPassValidationEmptyMainCharacterName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .mainCharacterName("")
                 .build();
@@ -185,7 +178,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
@@ -194,7 +186,7 @@ public class DynTreeDTOValidationTest {
     }
 
     @Test
-    public void shouldFailValidationNullMainCharacterName() {
+    public void shouldNotPassValidationNullMainCharacterName() {
         testDynTreeDTO = testDynTreeDTOBuilder
                 .mainCharacterName(null)
                 .build();
@@ -202,7 +194,6 @@ public class DynTreeDTOValidationTest {
         Set<ConstraintViolation<DynTreeDTO>> violations
                 = validator.validate(testDynTreeDTO);
 
-        assertFalse(violations.isEmpty());
         assertEquals(1, violations.size());
         ConstraintViolation violation = violations.iterator().next();
         assertEquals(BLANK_VIOLATION_MSG, violation.getMessage());
