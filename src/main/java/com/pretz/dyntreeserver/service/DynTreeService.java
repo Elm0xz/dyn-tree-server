@@ -2,25 +2,22 @@ package com.pretz.dyntreeserver.service;
 
 import com.pretz.dyntreeserver.domain.DynTree;
 import com.pretz.dyntreeserver.generator.DynTreeGenerator;
-import com.pretz.dyntreeserver.service.dto.DynTreeDTO;
-import com.pretz.dyntreeserver.service.dto.DynTreeMapper;
+import com.pretz.dyntreeserver.generator.DynTreeInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DynTreeService {
 
-    private DynTreeMapper dynTreeMapper;
+
     private DynTreeGenerator dynTreeGenerator;
 
     @Autowired
-    public DynTreeService(DynTreeMapper dynTreeMapper, DynTreeGenerator dynTreeGenerator) {
-        this.dynTreeMapper = dynTreeMapper;
+    public DynTreeService(DynTreeGenerator dynTreeGenerator) {
         this.dynTreeGenerator = dynTreeGenerator;
     }
 
-    public DynTree generateDynTree(DynTreeDTO dynTreeDTO) {
-        DynTreeInput dynTreeInput = dynTreeMapper.fromDynTreeDTO(dynTreeDTO);
+    public DynTree generateDynTree(DynTreeInput dynTreeInput) {
         return dynTreeGenerator.generateDynTree(dynTreeInput);
     }
 }
