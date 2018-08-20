@@ -1,12 +1,14 @@
-package com.pretz.dyntreeserver.service;
+package com.pretz.dyntreeserver.generator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.Year;
 
 @AllArgsConstructor
 @Getter
+@Builder
 public final class DynTreeInput {
 
     private final String familyName;

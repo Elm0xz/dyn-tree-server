@@ -1,6 +1,6 @@
 package com.pretz.dyntreeserver.service.dto;
 
-import com.pretz.dyntreeserver.service.DynTreeInput;
+import com.pretz.dyntreeserver.generator.DynTreeInput;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;

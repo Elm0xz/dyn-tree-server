@@ -1,13 +1,6 @@
 package com.pretz.dyntreeserver.service.dto;
 
-import com.pretz.dyntreeserver.service.DynTreeInput;
 import org.junit.jupiter.api.Test;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.BindingResultUtils;
-
-import javax.xml.ws.Binding;
-import java.time.LocalDate;
-import java.time.Year;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
