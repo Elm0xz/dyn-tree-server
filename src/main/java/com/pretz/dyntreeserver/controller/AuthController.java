@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -31,8 +33,8 @@ public class AuthController {
      */
     //TODO Here JSON with token and status could be sent instead, check here: http://www.baeldung.com/java-json-web-tokens-jjwt (chapter 4: Building JWTs with JJWT)
     @RequestMapping(method = POST, path = "/auth")
-    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
-        String userToken = authUserService.validateUser(userDTO);
+    public ResponseEntity<String> login(@Valid @RequestBody UserDTO userDTO) {
+        String userToken = authUserService.loginUser(userDTO);
         return new ResponseEntity<>("User " + userDTO.getName() + " successfully logged in! \nJWT Token: " + userToken, new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -42,7 +44,7 @@ public class AuthController {
      * @return - ResponseEntity containing info whether user was successfully created.
      */
     @RequestMapping(method = POST, path = "/create_user")
-    public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody UserDTO userDTO) {
         authUserService.createUser(userDTO);
         return new ResponseEntity<>("User " + userDTO.getName() + " successfully created!", new HttpHeaders(), HttpStatus.CREATED);
     }

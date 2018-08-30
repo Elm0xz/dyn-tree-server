@@ -50,7 +50,7 @@ public class AuthUserService {
      * @param userDTO - UserDTO containing info about user to be validated.
      * @return - Token created for that user if successful or AuthException thrown if validation failed.
      */
-    public String validateUser(UserDTO userDTO) {
+    public String loginUser(UserDTO userDTO) {
         User valUser = userMapper.fromUserDTO(userDTO);
         Optional<User> foundUser = userRepo.findByName(valUser.getName());
         if (!foundUser.isPresent()

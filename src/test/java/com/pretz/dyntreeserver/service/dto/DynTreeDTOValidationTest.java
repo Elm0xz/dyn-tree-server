@@ -1,6 +1,5 @@
-package com.pretz.dyntreeserver.controller;
+package com.pretz.dyntreeserver.service.dto;
 
-import com.pretz.dyntreeserver.service.dto.DynTreeDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
