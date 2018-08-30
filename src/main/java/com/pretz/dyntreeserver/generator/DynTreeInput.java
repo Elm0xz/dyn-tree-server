@@ -3,6 +3,7 @@ package com.pretz.dyntreeserver.generator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.time.Year;
 
@@ -11,13 +12,23 @@ import java.time.Year;
 @Builder
 public final class DynTreeInput {
 
+    @NonNull
     private final String familyName;
-    private final Integer familyCount;
-    private final Integer generationsCount;
-    private final Double childrenPerCharacter;
-    private final Long nameListId;
-    private final Integer maxAge;
-    private final Integer maturityAge;
-    private final Year startingYear;
+    @NonNull
     private final String mainCharacterName;
+    @NonNull
+    private final Integer familyCount;
+    @NonNull
+    private final Integer generationsCount;
+    @NonNull
+    private final Double childrenPerCharacter;
+    @NonNull
+    private final Long nameListId;
+    @NonNull
+    private final Integer maxAge;
+    @NonNull
+    private final Integer maturityAge;
+    @NonNull
+    private final Year startingYear;
+
 }

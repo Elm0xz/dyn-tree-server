@@ -17,6 +17,10 @@ public final class DynTreeDTO {
     @Getter
     private final String familyName;
 
+    @NotBlank
+    @Getter
+    private final String mainCharacterName;
+
     @Min(value = 3)
     @Getter
     private final int familyCount;
@@ -41,22 +45,19 @@ public final class DynTreeDTO {
     @Getter
     private final Year startingYear;
 
-    @NotBlank
-    @Getter
-    private final String mainCharacterName;
-
     @JsonCreator
     public DynTreeDTO(@JsonProperty("family_name") String familyName,
+                      @JsonProperty("main_character") String mainCharacterName,
                       @JsonProperty("family_count") Integer familyCount,
                       @JsonProperty("generations_count") Integer generationsCount,
                       @JsonProperty("children_per_character") Double childrenPerCharacter,
                       @JsonProperty("name_list") Long nameListId,
                       @JsonProperty("max_age") Integer maxAge,
                       @JsonProperty("maturity_age") Integer maturityAge,
-                      @JsonProperty("starting_year") Year startingYear,
-                      @JsonProperty("main_character") String mainCharacterName) {
+                      @JsonProperty("starting_year") Year startingYear) {
 
         this.familyName = familyName;
+        this.mainCharacterName = mainCharacterName;
         this.familyCount = familyCount;
         this.generationsCount = generationsCount;
         this.childrenPerCharacter = childrenPerCharacter;
@@ -64,6 +65,5 @@ public final class DynTreeDTO {
         this.maxAge = maxAge;
         this.maturityAge = maturityAge;
         this.startingYear = startingYear;
-        this.mainCharacterName = mainCharacterName;
     }
 }

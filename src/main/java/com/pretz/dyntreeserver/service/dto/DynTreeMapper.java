@@ -10,13 +10,14 @@ public class DynTreeMapper {
     public DynTreeInput fromDynTreeDTO(@Valid DynTreeDTO dynTreeDTO) {
         return new DynTreeInput(
                 dynTreeDTO.getFamilyName(),
+                dynTreeDTO.getMainCharacterName(),
                 dynTreeDTO.getFamilyCount(),
                 dynTreeDTO.getGenerationsCount(),
                 dynTreeDTO.getChildrenPerCharacter(),
                 dynTreeDTO.getNameListId(),
                 dynTreeDTO.getMaxAge(),
                 dynTreeDTO.getMaturityAge(),
-                dynTreeDTO.getStartingYear(),
-                dynTreeDTO.getMainCharacterName());
+                dynTreeDTO.getStartingYear()
+        );
     }
 }

@@ -2,7 +2,10 @@ package com.pretz.dyntreeserver.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "DynTree")
 public class DynTree {
@@ -13,21 +16,53 @@ public class DynTree {
     private String familyName;
 
     @OneToOne
-    private DynCharacter mainCharacter;
+    private DynCharacter founder;
 
-    public DynTree(String familyName) {
+    @OneToMany(mappedBy = "dynTree")
+    private List<DynCharacter> characters;
+
+    @OneToOne
+    private NameList nameList;
+
+    public DynTree(String familyName, DynCharacter mainCharacter) {
         this.familyName = familyName;
+        this.founder = mainCharacter;
+        characters = new ArrayList<>();
+        characters.add(founder);
     }
 
     public String getFamilyName() {
-        return this.familyName;
+        return familyName;
     }
 
-    public DynCharacter getMainCharacter() {
-        return this.mainCharacter;
+    public DynCharacter getFounder() {
+        return founder;
     }
 
-    public void setMainCharacter(DynCharacter mainCharacter) {
-        this.mainCharacter = mainCharacter;
+    public void setFounder(DynCharacter founder) {
+        this.founder = founder;
+        characters.add(founder);
+    }
+
+    public int getFamilyCount() {
+        return characters.size();
+    }
+
+    public void addCharacter(DynCharacter newCharacter) {
+        characters.add(newCharacter);
+    }
+
+    public int getGenerationsCount() {
+        int generationsCount = 1;
+        DynCharacter character = founder;
+        while (character.getEldestChild() != null) {
+            character = character.getEldestChild();
+            generationsCount++;
+        }
+        return generationsCount;
+    }
+
+    public List<DynCharacter> getCharacters() {
+        return characters;
     }
 }
